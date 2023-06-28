@@ -13,5 +13,6 @@ class AppTestCase(unittest.TestCase):
         res = app.hello(1)
         self.assertEqual(res, "Hello, 1")
 
+
 if __name__ == "__main__":
     unittest.main()
