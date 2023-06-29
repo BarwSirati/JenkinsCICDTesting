@@ -17,8 +17,7 @@ pipeline {
                 label 'unittest'
             }
             steps {
-                sh 
-                '''#!/bin/bash
+                sh '''#!/bin/bash
                  source env/bin/activate && pip install -r ./requirements.txt
                 '''
             }
