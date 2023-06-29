@@ -44,18 +44,26 @@ pipeline {
                     git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
                 }
                 echo 'Runing Robot'
-                sh 'python3 -m robot ./robot/test-calculate.robot'
+                sh 'cd ./robot && python3 -m robot ./test-calculate.robot'
             }
         }
-        
-        // stage('Cloning Repository') {
-        //     agent {
-        //         label 'preproduction'
-        //     }
-        //     steps {
-        //         echo 'Create Container'
-        //         sh 'docker compose -f ./compose.yaml up -d --build'
-        //     }
-        // }
+        stage('Kill Docker') {
+            agent {
+                label 'unittest'
+            }
+            steps {
+                echo 'DownTime'
+                sh 'docker compose -f ./compose.yaml down'
+            }
+        }
+        stage('Cloning Repository') {
+            agent {
+                label 'preproduction'
+            }
+            steps {
+                echo 'Create Container'
+                sh 'docker compose -f ./compose.yaml up -d --build'
+            }
+        }
     }
 }
