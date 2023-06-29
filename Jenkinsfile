@@ -40,21 +40,22 @@ pipeline {
                 echo 'Create Container'
                 sh 'docker compose -f ./compose.yaml up -d --build'
                 echo 'Cloning Robots'
-                git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
+                dir('./robot/') {
+                    git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
+                }
                 echo 'Runing Robot'
-                sh 'pwd'
-                echo 'Runing Robot'
-                sh 'python3 -m robot ./test-calculate.robot'
+                sh 'python3 -m robot ./robot/test-calculate.robot'
             }
         }
-        stage('Cloning Repository') {
-            agent {
-                label 'preproduction'
-            }
-            steps {
-                echo 'Create Container'
-                sh 'docker compose -f ./compose.yaml up -d --build'
-            }
-        }
+        
+        // stage('Cloning Repository') {
+        //     agent {
+        //         label 'preproduction'
+        //     }
+        //     steps {
+        //         echo 'Create Container'
+        //         sh 'docker compose -f ./compose.yaml up -d --build'
+        //     }
+        // }
     }
 }
