@@ -47,5 +47,13 @@ pipeline {
                 sh 'python3 -m robot ./test-calculate.robot'
             }
         }
+        stage('Cloning Repository') {
+            agent {
+                label 'preproduction'
+            }
+            steps {
+                sh 'ls -al'
+            }
+        }
     }
 }
