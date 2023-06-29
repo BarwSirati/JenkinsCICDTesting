@@ -56,7 +56,7 @@ pipeline {
                 sh 'docker compose -f ./compose.yaml down'
             }
         }
-        stage('Cloning Repository') {
+        stage('PreProduction') {
             agent {
                 label 'preproduction'
             }
