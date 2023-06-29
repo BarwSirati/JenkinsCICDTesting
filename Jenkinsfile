@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    options {
+        timeout(time: 30, unit: 'SECONDS')
+    }
     stages {
         stage('Install Environment') {
             agent {
