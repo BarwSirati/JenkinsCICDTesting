@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 echo 'Create Container'
-                sh 'docker compose -f ./compose.yaml up -d'
+                sh 'docker compose -f ./compose.yaml up -d --build'
                 echo 'Cloning Robots'
                 git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
                 echo 'Runing Robot'
