@@ -17,9 +17,10 @@ pipeline {
                 label 'unittest'
             }
             steps {
-                script {
-                    sh  'source ./env/bin/activate && pip install -r ./requirements.txt'
-                }
+                sh 
+                '''#!/bin/bash
+                 source env/bin/activate && pip install -r ./requirements.txt
+                '''
             }
         }
     }
