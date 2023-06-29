@@ -2,12 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Check Api Folder') {
+        stage('Install Environment') {
             agent {
                 label 'unittest'
             }
             steps {
-                sh 'ls -al'
+                sh 'python3 -m venv env'
+            }
+        }
+        stage('Activate Environment') {
+            agent {
+                label 'unittest'
+            }
+            steps {
+                sh 'source ./env/bin/activate'
+                sh 'pip install -r ./requirements.txt'
             }
         }
     }
