@@ -52,7 +52,8 @@ pipeline {
                 label 'preproduction'
             }
             steps {
-                sh 'ls -al'
+                echo 'Create Container'
+                sh 'docker compose -f ./compose.yaml up -d --build'
             }
         }
     }
