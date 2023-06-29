@@ -32,5 +32,18 @@ pipeline {
                 '''
             }
         }
+        stage('Run Robot') {
+            agent {
+                label 'unittest'
+            }
+            steps {
+                echo 'Create Container'
+                sh 'docker compose -f ./compose.yaml up -d'
+                echo 'Cloning Robots'
+                git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
+                echo 'Runing Robot'
+                sh 'ls -al'
+            }
+        }
     }
 }
