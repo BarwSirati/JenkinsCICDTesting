@@ -43,6 +43,8 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
                 echo 'Runing Robot'
                 sh 'pwd'
+                echo 'Runing Robot'
+                sh 'python3 -m robot ./test-calculate.robot'
             }
         }
     }
