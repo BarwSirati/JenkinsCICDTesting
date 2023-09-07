@@ -6,15 +6,12 @@ pipeline {
     stages {
         stage('Install Environment') {
             agent {
-                label 'unittest'
-            }
-            steps {
-                sh 'python3 -m venv env'
+                label 'test'
             }
         }
-        stage('Activate Environment && Install Library') {
+        stage('Run Container') {
             agent {
-                label 'unittest'
+                label 'test'
             }
             steps {
                 sh '''#!/bin/bash
@@ -24,7 +21,7 @@ pipeline {
         }
         stage('Run Unittest') {
             agent {
-                label 'unittest'
+                label 'test'
             }
             steps {
                 sh '''#!/bin/bash
@@ -34,7 +31,7 @@ pipeline {
         }
         stage('Run Robot') {
             agent {
-                label 'unittest'
+                label 'test'
             }
             steps {
                 echo 'Create Container'
@@ -49,7 +46,7 @@ pipeline {
         }
         stage('Kill Docker') {
             agent {
-                label 'unittest'
+                label 'test'
             }
             steps {
                 echo 'DownTime'
@@ -58,7 +55,7 @@ pipeline {
         }
         stage('PreProduction') {
             agent {
-                label 'preproduction'
+                label 'preprod'
             }
             steps {
                 echo 'Create Container'
