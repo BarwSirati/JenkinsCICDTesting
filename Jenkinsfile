@@ -51,7 +51,7 @@ pipeline {
             steps {
                 echo 'DownTime'
                 sh 'docker compose -f ./compose.yaml down'
-                sh 'docker system prune -a'
+                sh 'docker system prune -a -f'
             }
         }
     }
