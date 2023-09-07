@@ -44,13 +44,14 @@ pipeline {
                 sh 'cd ./robot && robot ./test-calculate.robot'
             }
         }
-        stage('Kill Docker') {
+        stage('Clean Workspace') {
             agent {
                 label 'test'
             }
             steps {
                 echo 'DownTime'
                 sh 'docker compose -f ./compose.yaml down'
+                sh 'docker system prune -a'
             }
         }
     }
