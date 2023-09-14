@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Install Environment') {
+        stage('Build') {
             agent {
                 label 'test'
             }
             steps {
-                sh 'echo Test'
+                sh 'docker build -t registry.gitlab.com/barwsirati/jenkinscicdtesting ./app'
             }
         }
     }
