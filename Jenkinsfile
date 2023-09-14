@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 echo 'Create Container'
-                sh 'docker compose -f ./compose.yaml up -d --build'
+                sh 'docker compose -f ./compose.dev.yaml up -d --build'
                 echo 'Cloning Robots'
                 dir('./robot/') {
                     git branch: 'main', url: 'https://github.com/CE-SDPX/simple-api-robot.git'
@@ -66,8 +66,16 @@ pipeline {
             }
             steps {
                 echo 'DownTime'
-                sh 'docker compose -f ./compose.yaml down'
+                sh 'docker compose -f ./compose.dev.yaml down'
                 sh 'docker system prune -a -f'
+            }
+        }
+        stage('Running Preprod') {
+            agent{
+                label 'preprod'
+            }
+            steps {
+                sh 'docker compose up -d --build'
             }
         }
     }
