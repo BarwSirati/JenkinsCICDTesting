@@ -9,5 +9,13 @@ pipeline {
                 sh 'docker build -t registry.gitlab.com/barwsirati/jenkinscicdtesting ./app'
             }
         }
+        stage('Push') {
+            agent{
+                label 'test'
+            } 
+            steps {
+                sh 'docker push registry.gitlab.com/barwsirati/jenkinscicdtesting'
+            }
+        }
     }
 }
