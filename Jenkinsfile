@@ -6,7 +6,7 @@ pipeline {
                 label 'test'
             }
             steps {
-                sh 'echo Hello'
+                sh 'echo Test'
             }
         }
     }
